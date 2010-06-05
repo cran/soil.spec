@@ -1,0 +1,20 @@
+Package: soil.spec
+Type: Package
+Title: Soil spectral data exploration and regression functions
+Version: 1.2
+Date: 2010-06-05
+Author: Thomas Terhoeven-Urselmans
+Maintainer: Thomas Terhoeven-Urselmans <t.urselmans@cgiar.org>
+Description: This package combines existing R functions with new code
+        for soil spectral analysis. The result is an easy to use tool
+        for (i) importing of spc-files, (ii) principal component
+        analysis, (iii) sample selection using the Kennard-Stone
+        algorithm, (iv) spectral transformation and (v) comparison of
+        regression methods.
+Suggests:
+        KernSmooth,pls,splines,survival,lattice,gbm,class,hexView,wavelets,car,e1071
+License: GPL-2
+LazyLoad: yes
+Packaged: 2010-06-05 08:13:24 UTC; thomas
+Repository: CRAN
+Date/Publication: 2010-06-05 17:59:19
