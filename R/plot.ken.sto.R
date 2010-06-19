@@ -1,7 +1,7 @@
 plot.ken.sto <-
 function(x,...){
 	if(x$"Calibration and validation set"=="FALSE"){
-		quartz(width=13,height=8);
+		x11(width=13,height=8);
 if(x$"Number important PC"<=2){par(mfrow=c(2,2),mar=c(1,1,1,1))};
 for(i in 3:5){
 if(x$"Number important PC"==i){par(mfrow=c(i,i),mar=c(1,1,1,1))};
@@ -16,7 +16,7 @@ for(i in 1:if(x$"Number important PC"<=5){x$"Number important PC"}else{5}){
 		}
 	
 	if(x$"Calibration and validation set"=="TRUE"){
-		quartz(width=13,height=8);
+		x11(width=13,height=8);
 if(x$"Number important PC"<=2){par(mfrow=c(2,2),mar=c(1,1,1,1))};
 for(i in 3:5){
 if(x$"Number important PC"==i){par(mfrow=c(i,i),mar=c(1,1,1,1))};

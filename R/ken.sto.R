@@ -70,7 +70,7 @@ inp.start.b<-inp.start.b[-(which(match(inp.start.b,bla)!="NA"))];
 }
 cal.n<-match(cal,rownames(inp));
 
-quartz(width=13,height=8);
+x11(width=13,height=8);
 if(pc<=2){par(mfrow=c(2,2),mar=c(1,1,1,1))};
 for(i in 3:5){
 if(pc==i){par(mfrow=c(i,i),mar=c(1,1,1,1))};
@@ -137,7 +137,7 @@ cal<-rownames(inp)[cal.n];
 
 # Plot the output:	
 	
-quartz(width=13,height=8);
+x11(width=13,height=8);
 if(pc<=2){par(mfrow=c(2,2),mar=c(1,1,1,1))};
 for(i in 3:5){
 if(pc==i){par(mfrow=c(i,i),mar=c(1,1,1,1))};

@@ -1,5 +1,5 @@
 \name{pc.space}
-\Rdversion{1.1}
+\Rdversion{1.3}
 \alias{pc.space}
 \alias{plot.pc.space}
 \title{Projection of new spectra into a principal component space}

@@ -179,7 +179,7 @@ y.log<-log(y+1);
 tr<-c("Untransformed","Box-Cox transformed","Square root transformed","Log transformed");
 tr.n<-c();
 for(i in 1:ncol(y)){
-	quartz(width=8,height=8);
+	x11(width=8,height=8);
 	par(mfrow=c(2,2));
 	plot(density(na.omit(y[,i])),main=paste("Untransformed",y.n.n[i]));
 	plot(density(na.omit(y.bc[,i])),main=paste("Box-Cox transformed",y.n.n[i]));
@@ -652,7 +652,7 @@ rmsep.1[j]<-round(sqrt(median((val.mp[p[b.1],paste("pred.",variables[i],sep="")]
 
 # Plot linear regression of measured against predicted of calibration and validation sets:
 
-quartz(width=5,height=2.5*length(variables));
+x11(width=5,height=2.5*length(variables));
 par(mfrow=c(length(variables),2));
 for(i in 1:length(variables)){
 mi<-min(na.omit(c(cal.mp[,variables[i]],cal.mp[,paste("pred.",variables[i],sep="")],val.mp[,variables[i]],val.mp[,paste("pred.",variables[i],sep="")])));
