@@ -78,8 +78,8 @@ if(pc==i){par(mfrow=c(i,i),mar=c(1,1,1,1))};
 if(pc>5){par(mfrow=c(5,5),mar=c(1,1,1,1))};
 for(i in 1:if(pc<=5){pc}else{5}){
 	for(j in 1:if(pc<=5){pc}else{5}){
-		plot(prco[,i]~prco[,j],cex=0.3);
-		points(prco[cal.n,i]~prco[cal.n,j],col="green",cex=0.3);
+		plot(prco[,i]~prco[,j],cex=0.5);
+		points(prco[cal.n,i]~prco[cal.n,j],col="green",cex=0.6);
 		}	
 	}
 

@@ -1,5 +1,5 @@
 \name{read.spc}
-\Rdversion{1.3}
+\Rdversion{1.4}
 \alias{read.spc}
 \title{Reads spectral spc-files into R}
 \description{

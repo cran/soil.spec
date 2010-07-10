@@ -520,8 +520,8 @@ if(im[i]==4){
 	val.mp[val[[i]],paste("pred.",variables[i],sep="")]<-exp(val.mp[val[[i]],paste("pred.",colnames(y.tr)[i],sep="")])-1	}
 bc.val[[i]]<-which(val.mp[val[[i]],paste("pred.",variables[i],sep="")]=="NaN");
 }
-detach(package:class);
 detach(package:e1071);
+detach(package:class);
 	}
 
 # Compute statistics independend of regression method:

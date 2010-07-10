@@ -1,5 +1,5 @@
 \name{regr}
-\Rdversion{1.3}
+\Rdversion{1.4}
 \alias{regr}
 \alias{plot.regr}
 \alias{pred.regr}

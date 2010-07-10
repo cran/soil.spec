@@ -1,5 +1,5 @@
 \name{make.comp}
-\Rdversion{1.3}
+\Rdversion{1.4}
 \alias{make.comp}
 \title{Making spectra compatible}
 \description{

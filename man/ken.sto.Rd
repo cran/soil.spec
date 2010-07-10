@@ -1,5 +1,5 @@
 \name{ken.sto}
-\Rdversion{1.3}
+\Rdversion{1.4}
 \alias{ken.sto}
 \alias{plot.ken.sto}
 \title{Sample selection based on the Kennard-Stone algorithm}

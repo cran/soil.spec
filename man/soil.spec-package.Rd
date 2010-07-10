@@ -8,8 +8,8 @@
 \tabular{ll}{
 Package: \tab soil.spec\cr
 Type: \tab Package\cr
-Version: \tab 1.3\cr
-Date: \tab 2010-06-19\cr
+Version: \tab 1.4\cr
+Date: \tab 2010-07-10\cr
 License: \tab GPL-2\cr
 LazyLoad: \tab yes\cr
 }
