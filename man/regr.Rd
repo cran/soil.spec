@@ -1,27 +1,27 @@
 \name{regr}
-\Rdversion{1.4}
+\Rdversion{1.1}
 \alias{regr}
 \alias{plot.regr}
 \alias{pred.regr}
 \alias{summary.regr}
 \title{Regression functions for soil spectral analysis}
 \description{
-Different regression functions (partial least-squares, boosted regression trees, support vector machines) can be chosen for calibrations of one or more constituents. Function settings are optimized for soil spectral analysis, but can be varied. Possible spectral transformations are described in the \code{\link{trans}} function.
+The next update of this package will fix some problems observed for this method which gives different regression functions (partial least-squares, boosted regression trees, support vector machines) can be chosen for calibrations of one or more constituents. Function settings are optimized for soil spectral analysis, but can be varied. Possible spectral transformations are described in the \code{\link{trans}} function.
 }
-\usage{
-regr(x, y, sav = "NULL", spec.type = "wavelet transformed", reg = "svm", per = "TRUE", per.n = 0.3, num, model.name = "test", drv = 1, bandwidth = 21, validation = "CV", filte = "haar", level = 3, distribution = "gaussian", n.trees = 1000, shrinkage = 0.01, kerne = "radial")
+%%\usage{
+%%regr(x, y, sav = "NULL", spec.type = "wt", reg = "svm", per = "TRUE", per.n = 0.3, num, model.name = "test", drv = 1, bandwidth = 21, val= "CV", filte = "haar", level = 3, dis = "gaussian", n.trees = 1000, shrinkage = 0.01, kerne = "radial")
 
-\method{plot}{regr}(x,...)
+%%\method{plot}{regr}(x,...)
 
-\method{summary}{regr}(object,...)
+%%\method{summary}{regr}(object,...)
 
-\method{pred}{regr}(new,model,output.name="test",sav="NULL")
-}
+%%\method{pred}{regr}(new,model,output.name="test",sav="NULL")
+%%}
 \arguments{
   \item{x}{a numerical data.frame or matrix containing the raw spectra in \code{regr}. An object of class \code{"regr"} in \code{plot.regr}.}
   \item{y}{a numerical data.frame or matrix containing the constituents.}
   \item{sav}{a character vector giving the path where to save the function output. If \code{"NULL"} (default), the current working directory is taken. As well used in \code{pred.regr}.}
-  \item{spec.type}{a character giving the desired spectral transformation. Available are \code{"raw"} (raw spectra), \code{"derivative"} (derivative spectra), \code{"continuum removed"} (continuum removed spectra) and  \code{"wavelet transformed"} (wavelet coefficients).}
+  \item{spec.type}{a character giving the desired spectral transformation. Available are \code{"raw"} (raw spectra), \code{"derivative"} (derivative spectra), \code{"continuum removed"} (continuum removed spectra) and  \code{"wt"} (wavelet coefficients).}
   \item{reg}{a character giving the regression method. Available are \code{"pls"} (partial least-squares), \code{"brt"} (boosted regression trees) and \code{"svm"} (support vector machines).}
   \item{per}{a logical indicating whether validation samples should be chosen as a percentage from \code{x} (given in \code{per.n}). If \code{"FALSE"} object \code{num} is taken.}
   \item{per.n}{a numeric between 0 and 1 giving the percentage of validation samples to choose.}
@@ -29,10 +29,10 @@ regr(x, y, sav = "NULL", spec.type = "wavelet transformed", reg = "svm", per = "
   \item{model.name}{a character naming the model output.}
   \item{drv}{an integer between 0 and 3 giving the order of derivative. The value 0 performs smoothing based on \code{bandwidth}.}
   \item{bandwidth}{an integer between 1 and 30 defining the smoothing interval in wavebands.}
-  \item{validation}{a character defining the type of cross-validation procedure when \code{reg} is equal to \code{"pls"}. Available are \code{"none"} (no cross-validation procedure), \code{"CV"} (cross-validation in 10 segments) and \code{"LOO"} (leave-one-out cross-validation).}
+  \item{val}{a character defining the type of cross-validation procedure when \code{reg} is equal to \code{"pls"}. Available are \code{"none"} (no cross-validation procedure), \code{"CV"} (cross-validation in 10 segments) and \code{"LOO"} (leave-one-out cross-validation).}
   \item{filte}{a character defining the wavelet filter in \code{dwt} function from \code{wavelets} package.}
   \item{level}{a character defining the level of wavelet coefficients extraction (1 to 10 possible; 1 yields 512 coefficients, 2 yields 256 coefficients...).}
-  \item{distribution}{a character giving in the distribution in the \code{gbm.fit} function.}
+  \item{dis}{a character giving in the distribution in the \code{gbm.fit} function.}
   \item{n.trees}{an integer giving the total number of trees to fit in the \code{gbm.fit} function.}
   \item{shrinkage}{a character giving in the shrinkage parameter in the \code{gbm.fit} function.}
   \item{kerne}{a character giving in the kernel used in the \code{svm} function.}

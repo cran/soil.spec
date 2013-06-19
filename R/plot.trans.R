@@ -4,7 +4,7 @@ function(x,...){
 raw<-x$raw;
 trans<-x$trans;
 tr<-x$transformation;
-x11(width=10,height=7);
+quartz(width=10,height=7);
 par(mfrow=c(2,1));
 waveb<-as.numeric(colnames(raw));
 plot(raw[1,]~waveb,type="l",ylim=c(min(raw),max(raw)),xlab="Wavebands",ylab="Absorption or Reflection",main="Raw spectra");
@@ -22,4 +22,3 @@ for(i in 2:nrow(raw)){
 	}
 	
 	}
-

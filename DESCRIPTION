@@ -1,20 +1,19 @@
 Package: soil.spec
 Type: Package
-Title: Soil spectral data exploration and regression functions
-Version: 1.4
-Date: 2010-07-10
-Author: Thomas Terhoeven-Urselmans
-Maintainer: Thomas Terhoeven-Urselmans <t.urselmans@cgiar.org>
-Description: This package combines existing R functions with new code
-        for soil spectral analysis. The result is an easy to use tool
-        for (i) importing of spc-files, (ii) principal component
-        analysis, (iii) sample selection using the Kennard-Stone
-        algorithm, (iv) spectral transformation and (v) comparison of
-        regression methods.
-Suggests:
-        KernSmooth,pls,splines,survival,lattice,gbm,class,hexView,wavelets,car,e1071
-License: GPL-2
-LazyLoad: yes
-Packaged: 2012-10-29 08:59:47 UTC; ripley
+Title: Soil spectral file conversion, data exploration and regression
+        functions
+Version: 2.1
+Date: 2013-06-19
+Author: Andrew Sila and Thomas Terhoeven-Uselmans
+Maintainer: Andrew Sila <asila@cgiar.org>
+URL: http://worldagroforestry.org/research/land-health,
+        http://www.africasoils.net/
+Description: A collection of tools customized for preprocessing and
+        analyzing soil and plant infrared spectroscopy data.
+Depends: R (>= 3.0), KernSmooth, car, class, e1071, hexView, gbm,
+        lattice, pls, splines, survival, wavelets
+License: GPL (>= 2)
+Packaged: 2013-06-21 10:33:33 UTC; andrewsila
+NeedsCompilation: no
 Repository: CRAN
-Date/Publication: 2012-10-29 08:59:47
+Date/Publication: 2013-06-21 14:26:57

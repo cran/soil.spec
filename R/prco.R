@@ -23,11 +23,11 @@ class(output)<-"prco"
 
 # Plot PC spaces against each other:
 
-x11();
+quartz();
 if(output$i.pc==0){pairs(output$prcomp$x[,1:5])};
 if(output$i.pc==1){pairs(output$prcomp$x[,1:5])};
 if(output$i.pc>1){pairs(output$prco[,1:output$i.pc])}
-x11();
+quartz();
 plot(output$prcomp$rotation[,1]~as.numeric(rownames(output$prcomp$rotation)),ylab="Loading values",xlab="Wavebands (cm^-1)",type="l",ylim=c(min(output$prcomp$rotation[,1:2],na.rm=T),max(output$prcomp$rotation[,1:2],na.rm=T)));
 lines(output$prcomp$rotation[,2]~as.numeric(rownames(output$prcomp$rotation)),col="red")
 legend(x="bottomright",legend=c("First PC","Second PC"),col=c("black","red"),lty=1)
@@ -41,4 +41,3 @@ if(sav=="TRUE"){
 	}
 return(output);
 }
-

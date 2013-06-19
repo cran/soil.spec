@@ -13,7 +13,7 @@ ne<-predict(object=pca,newdata=new);
 
 # Plot new in base:
 
-x11(height=,width=9);
+quartz(height=,width=9);
 par(mfrow=c(5,5),mar=c(1,1,1,1));
 plot(prco[,1]~prco[,1],type="n",xaxt="n",yaxt="n");
 text(x=max((prco[,2]))-(max((prco[,2]))-min((prco[,2])))/2,y=max((prco[,1]))-(max((prco[,1]))-min((prco[,1])))/2,labels="PC1",cex=2,pos=4);
@@ -71,4 +71,3 @@ output<-list(prco.base=prco,prco.new=ne);
 class(output)<-"pc.space";
 return(output);
 	}
-

@@ -1,24 +1,24 @@
 ken.sto <-
-function(inp,per="TRUE",per.n=0.3,num,va="FALSE",sav="TRUE",save.path="NULL",output.name="Sample selection"){
+function(inp,per="T",per.n=0.3,num,va="F",sav="T",path="",out="Sel"){
 	
 # Check the function body:
 
 if(class(inp)!="data.frame" & class(inp)!="matrix"){stop("Invalid argument: 'inp' has to be of class 'data.frame' or 'matrix'.")};
-if(per!="TRUE" & per!="FALSE"){stop("Invalid argument: 'per' has to be either 'TRUE' or 'FALSE'.")}
-if(per=="TRUE"){
+if(per!="T" & per!="F"){stop("Invalid argument: 'per' has to be either 'T' or 'F'.")}
+if(per=="T"){
 	if(class(per.n)!="numeric"){stop("Invalid argument: 'per' has to be of class 'numeric'.")};
 	if(per.n<0 | per.n>1){stop("Invalid argument: 'per' has to be between 0 and 1.")};
 	n<-round(per.n*nrow(inp),0);
 }
-if(per=="FALSE"){
+if(per=="F"){
 	if(class(as.integer(num))!="integer"){stop("Invalid argument: 'num' has to be of class 'integer'.")};
 	if(num<=0){stop("Invalid argument: 'num' has to be between 1 and the number of samples minus one.")}
 	if(num>=nrow(inp)){stop("Invalid argument: 'num' has to be between 1 and the number of samples minus one.")};
 	n<-num;
 }
-if(va!="TRUE" & va!="FALSE"){stop("Invalid argument: 'va' has to be either 'TRUE' or 'FALSE'.")}
-if(is.na(match(sav,c("FALSE","TRUE")))){stop("Invalid argument: 'sav' has to either 'FALSE' or 'TRUE'.")};
-if(class(output.name)!="character"){stop("Invalid argument: 'output.name' has to be of class 'character'.")};
+if(va!="T" & va!="F"){stop("Invalid argument: 'va' has to be either 'T' or 'F'.")}
+if(is.na(match(sav,c("F","T")))){stop("Invalid argument: 'sav' has to either 'F' or 'T'.")};
+if(class(out)!="character"){stop("Invalid argument: 'out' has to be of class 'character'.")};
 
 # Make the chosen sample selection:
 
@@ -32,8 +32,8 @@ for (i in 1:16){
 	e<-(cpv[i]+0.04)<cpv[i+3];
 	zzz[i]<-e
 	}
-pc<-(which(zzz==FALSE)-1)[1];
-if(pc==1){pc<-2};
+pc<-(which(zzz==F)-1)[1];
+if(pc<=1){pc<-2};
 prco<-prco[,1:pc];	
 
 # Get the most extreme points (min and max) for each important principal component:
@@ -51,7 +51,7 @@ max<-rownames(prco)[max];
 start<-unique(c(min,max));
 start.n<-match(start,rownames(inp));
 
-if(va=="FALSE"){
+if(va=="F"){
 	
 # Calculate the Euclidean distance matrix:
 
@@ -70,7 +70,7 @@ inp.start.b<-inp.start.b[-(which(match(inp.start.b,bla)!="NA"))];
 }
 cal.n<-match(cal,rownames(inp));
 
-x11(width=13,height=8);
+quartz(width=13,height=8);
 if(pc<=2){par(mfrow=c(2,2),mar=c(1,1,1,1))};
 for(i in 3:5){
 if(pc==i){par(mfrow=c(i,i),mar=c(1,1,1,1))};
@@ -78,23 +78,23 @@ if(pc==i){par(mfrow=c(i,i),mar=c(1,1,1,1))};
 if(pc>5){par(mfrow=c(5,5),mar=c(1,1,1,1))};
 for(i in 1:if(pc<=5){pc}else{5}){
 	for(j in 1:if(pc<=5){pc}else{5}){
-		plot(prco[,i]~prco[,j],cex=0.5);
-		points(prco[cal.n,i]~prco[cal.n,j],col="green",cex=0.6);
+		plot(prco[,i]~prco[,j],cex=0.3);
+		points(prco[cal.n,i]~prco[cal.n,j],col="green",cex=0.3);
 		}	
 	}
 
-output<-list("Calibration and validation set"=va,"Number important PC"=pc,"PC space important PC"=prco,"Chosen sample names"=cal,"Chosen row number"=cal.n,"Chosen calibration sample names"="NULL","Chosen calibration row number"="NULL","Chosen validation sample names"="NULL","Chosen validation row number"="NULL");
+output<-list("Calibration and validation set"=va,"Number important PC"=pc,"PC space important PC"=prco,"Chosen sample names"=cal,"Chosen row number"=cal.n,"Chosen calibration sample names"="","Chosen calibration row number"="","Chosen validation sample names"="","Chosen validation row number"="");
 class(output)<-"ken.sto";
-if(sav=="TRUE"){
-	if(save.path!="NULL"){
-		setwd(save.path)
+if(sav=="T"){
+	if(path!=""){
+		setwd(path)
 		}
-		save(output,file=output.name)
+		save(output,file=out)
 	}
 return(output);
 	}
 	
-if(va=="TRUE"){
+if(va=="T"){
 	
 cal.start<-start;
 cal.start.n<-start.n;
@@ -137,26 +137,26 @@ cal<-rownames(inp)[cal.n];
 
 # Plot the output:	
 	
-x11(width=13,height=8);
-if(pc<=2){par(mfrow=c(2,2),mar=c(1,1,1,1))};
-for(i in 3:5){
-if(pc==i){par(mfrow=c(i,i),mar=c(1,1,1,1))};
-	}
-if(pc>5){par(mfrow=c(5,5),mar=c(1,1,1,1))};
-for(i in 1:if(pc<=5){pc}else{5}){
-	for(j in 1:if(pc<=5){pc}else{5}){
-		plot(prco[,i]~prco[,j],cex=0.3);
-		points(prco[val.n,i]~prco[val.n,j],col="green",cex=0.3);
-		}	
-	}
+#quartz(width=13,height=8);
+#if(pc<=2){par(mfrow=c(2,2),mar=c(1,1,1,1))};
+#for(i in 3:5){
+#if(pc==i){par(mfrow=c(i,i),mar=c(1,1,1,1))};
+#	}
+#if(pc>5){par(mfrow=c(5,5),mar=c(1,1,1,1))};
+#for(i in 1:if(pc<=5){pc}else{5}){
+#	for(j in 1:if(pc<=5){pc}else{5}){
+#		plot(prco[,i]~prco[,j],cex=0.3);
+#		points(prco[val.n,i]~prco[val.n,j],col="green",cex=0.3);
+#		}	
+#	}
 	
-output<-list("Calibration and validation set"=va,"Number important PC"=pc,"PC space important PC"=prco,"Chosen sample names"="NULL","Chosen row number"="NULL","Chosen calibration sample names"=cal,"Chosen calibration row number"=cal.n,"Chosen validation sample names"=val,"Chosen validation row number"=val.n);
+output<-list("Calibration and validation set"=va,"Number important PC"=pc,"PC space important PC"=prco,"Chosen sample names"="","Chosen row number"="","Chosen calibration sample names"=cal,"Chosen calibration row number"=cal.n,"Chosen validation sample names"=val,"Chosen validation row number"=val.n);
 class(output)<-"ken.sto";
-if(sav=="TRUE"){
-	if(save.path!="NULL"){
-		setwd(save.path)
+if(sav=="T"){
+	if(path!=""){
+		setwd(path)
 		}
-		save(output,file=output.name)
+		save(output,file=out)
 	}
 return(output);
 
@@ -168,4 +168,3 @@ return(output);
 	
 	
 	}
-

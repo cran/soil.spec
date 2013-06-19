@@ -6,4 +6,3 @@ print(output);
 	
 	
 	}
-

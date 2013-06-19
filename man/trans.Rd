@@ -1,5 +1,5 @@
 \name{trans}
-\Rdversion{1.4}
+\Rdversion{1.1}
 \alias{trans}
 \alias{plot.trans}
 \title{Spectral transformation}

@@ -6,4 +6,3 @@ function(object,...){
 	cat("Important principal components:\n")
 	print(object$i.pc)
 	}
-

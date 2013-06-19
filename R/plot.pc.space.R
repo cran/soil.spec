@@ -1,7 +1,7 @@
 plot.pc.space <-
 function(x,...){
 	
-	x11(height=,width=9);
+	quartz(height=,width=9);
 par(mfrow=c(5,5),mar=c(1,1,1,1));
 plot(x$prco.base[,1]~x$prco.base[,1],type="n",xaxt="n",yaxt="n");
 text(x=max((x$prco.base[,2]))-(max((x$prco.base[,2]))-min((x$prco.base[,2])))/2,y=max((x$prco.base[,1]))-(max((x$prco.base[,1]))-min((x$prco.base[,1])))/2,labels="PC1",cex=2,pos=4);
@@ -57,4 +57,3 @@ text(x=max((x$prco.base[,2]))-(max((x$prco.base[,2]))-min((x$prco.base[,2])))/2,
 
 	
 	}
-

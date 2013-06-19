@@ -1,5 +1,5 @@
 \name{prco}
-\Rdversion{1.4}
+\Rdversion{1.1}
 \alias{prco}
 \alias{plot.prco}
 \alias{summary.prco}

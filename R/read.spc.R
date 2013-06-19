@@ -1,10 +1,10 @@
 read.spc <-
-function(loa="NULL",save.path="NULL",sav="FALSE",output.name="Spectral matrix",save.as="workspace",wavenumber="first.sample"){
+function(loa="",path="",sav="F",out="Sm",save.as="workspace",wn="first"){
 	
 ## Check function body arguments:
 
 tmp<-c() ;
-if(loa!="NULL"){
+if(loa!=""){
 	setwd(loa);
 	}
 	tmp<-list.files();	
@@ -14,12 +14,12 @@ if(loa!="NULL"){
 	if(length(a)>0){tmp<-tmp[-a]};
 	rm(a);
 	if(length(tmp)==0)stop("Invalid argument: the path is either incorrect or the folder empty.");
-if(is.na(match(sav,c("FALSE","TRUE")))){stop("Invalid argument: 'sav' has to either 'FALSE' or 'TRUE'.")}
-if(class(output.name)!="character"){stop("Invalid argument: 'output.name' has to be of class 'character'.")}
+if(is.na(match(sav,c("F","T")))){stop("Invalid argument: 'sav' has to either 'F' or 'T'.")}
+if(class(out)!="character"){stop("Invalid argument: 'out' has to be of class 'character'.")}
 if(is.na(match(save.as,c("workspace","csv.file")))){stop("invalid argument: 'save.as' has to be either 'workspace' or 'csv.file'.")}
 
-if(is.na(match(wavenumber,c("first.sample","ICRAF")))){stop("Invalid argument: 'wavenumber' has to be either 'first.sample' or 'ICRAF'.")};
-if(wavenumber=="ICRAF"){
+if(is.na(match(wn,c("first","ICRAF")))){stop("Invalid argument: 'wn' has to be either 'first' or 'ICRAF'.")};
+if(wn=="ICRAF"){
 	n.mpa<-2307
 Flast.mpa<-12493.20;
 Ffirst.mpa<-3598.69;
@@ -146,7 +146,7 @@ mir.ad.tmp[i,"Zero_filling"]<-as.integer(substr(test[[1]][20],nchar(test[[1]])[2
 
 # Make checks if parameters are the same for all samples:
 
-if(length(summary(as.factor(mir.ad.tmp[,"Material"])))!=1 |  length(summary(as.factor(mir.ad.tmp[,"Resolution"])))!=1 | length(summary(as.factor(mir.ad.tmp[,"Zero_filling"])))!=1 | length(summary(as.factor(mir.ad.tmp[,"Wavebands"])))!=1){test<-menu("Scan settings for mir-spectra not uniform. Find a txt-file with detailed scaning information named 'mir.ad.tmp.txt' in 'loa'.",graphics=T);if(test==1){write.table(mir.ad.tmp,file="mir.ad.tmp.txt",sep=",",dec=".",row.names=FALSE)}}
+if(length(summary(as.factor(mir.ad.tmp[,"Material"])))!=1 |  length(summary(as.factor(mir.ad.tmp[,"Resolution"])))!=1 | length(summary(as.factor(mir.ad.tmp[,"Zero_filling"])))!=1 | length(summary(as.factor(mir.ad.tmp[,"Wavebands"])))!=1){test<-menu("Scan settings for mir-spectra not uniform. Find a txt-file with detailed scaning information named 'mir.ad.tmp.txt' in 'loa'.",graphics=T);if(test==1){write.table(mir.ad.tmp,file="mir.ad.tmp.txt",sep=",",dec=".",row.names=F)}}
 
 if(length(summary(as.factor(mir.ad.tmp[,"Material"])))!=1){ma<-names(summary(as.factor(mir.ad.tmp[,"Material"])));mat<-c();mat[1]<-paste("Different materials for mir-spectra. Shall only ",ma[1]," be saved?",sep="");for(i in 2:length(ma)){mat[i]<-paste("Different materials for mir-spectra. Shall only ",ma[i]," be saved?",sep="")};test<-menu(mat,graphics=T);for(i in 1:length(ma)){if(test==i){bla<-which(mir.ad.tmp[,"Material"]==ma[i]);mir.ad.tmp<-mir.ad.tmp[bla,]}}}
 
@@ -155,7 +155,7 @@ if(length(summary(as.factor(mir.ad.tmp[,"Resolution"])))!=1){re<-as.integer(name
 
 if(length(summary(as.factor(mir.ad.tmp[,"Zero_filling"])))!=1){ze<-as.integer(names(summary(as.factor(mir.ad.tmp[,"Zero_filling"]))));zer<-c();zer[1]<-paste("Different Zero_fillings for 'mir' spectra. Shall only ",ze[1]," be saved?",sep="");for(i in 2:length(ze)){zer[i]<-paste("Different Zero_fillings. Shall only ",ze[i]," be saved?",sep="")};test<-menu(zer,graphics=T);for(i in 1:length(ze)){if(test==i){bla<-which(mir.ad.tmp[,"Zero_filling"]==ze[i]);mir.ad.tmp<-mir.ad.tmp[bla,]}}}
 
-if(length(summary(as.factor(mir.ad.tmp[,"Wavebands"])))!=1){test<-menu(c("Differing number of wavebands  for 'mir' spectra - continue according to function argument 'wavenumber'.","Differing number of wavebands  for 'mir' spectra - stop."),graphics=T);if(test==2){stop("You stopped reading spc-files.")}}
+if(length(summary(as.factor(mir.ad.tmp[,"Wavebands"])))!=1){test<-menu(c("Differing number of wavebands  for 'mir' spectra - continue according to function argument 'wn'.","Differing number of wavebands  for 'mir' spectra - stop."),graphics=T);if(test==2){stop("You stopped reading spc-files.")}}
 
 # Create additional data.frame:
 
@@ -262,7 +262,7 @@ nir.ad[i,"Zero_filling"]<-as.integer(substr(test[[1]][20],nchar(test[[1]])[20],n
 
 # Make checks if parameters are the same for all samples:
 
-if(length(summary(as.factor(nir.ad[,"Material"])))!=1 |  length(summary(as.factor(nir.ad[,"Resolution"])))!=1 | length(summary(as.factor(nir.ad[,"Zero_filling"])))!=1 | length(summary(as.factor(nir.ad[,"Wavebands"])))!=1){test<-menu("Scan settings for nir-spectra not uniform. Find a txt-file with detailed scaning information named 'nir.ad.txt' in 'loa'.",graphics=T);if(test==1){write.table(nir.ad,file="nir.ad.txt",sep=",",dec=".",row.names=FALSE)}}
+if(length(summary(as.factor(nir.ad[,"Material"])))!=1 |  length(summary(as.factor(nir.ad[,"Resolution"])))!=1 | length(summary(as.factor(nir.ad[,"Zero_filling"])))!=1 | length(summary(as.factor(nir.ad[,"Wavebands"])))!=1){test<-menu("Scan settings for nir-spectra not uniform. Find a txt-file with detailed scaning information named 'nir.ad.txt' in 'loa'.",graphics=T);if(test==1){write.table(nir.ad,file="nir.ad.txt",sep=",",dec=".",row.names=F)}}
 
 if(length(summary(as.factor(nir.ad[,"Material"])))!=1){ma<-names(summary(as.factor(nir.ad[,"Material"])));mat<-c();mat[1]<-paste("Different materials for nir-spectra. Shall only ",ma[1]," be saved?",sep="");for(i in 2:length(ma)){mat[i]<-paste("Different materials for nir-spectra. Shall only ",ma[i]," be saved?",sep="")};test<-menu(mat,graphics=T);for(i in 1:length(ma)){if(test==i){bla<-which(nir.ad[,"Material"]==ma[i]);nir.ad<-nir.ad[bla,]}}}
 
@@ -271,7 +271,7 @@ if(length(summary(as.factor(nir.ad[,"Resolution"])))!=1){re<-as.integer(names(su
 
 if(length(summary(as.factor(nir.ad[,"Zero_filling"])))!=1){ze<-as.integer(names(summary(as.factor(nir.ad[,"Zero_filling"]))));zer<-c();zer[1]<-paste("Different Zero_fillings for nir-spectra. Shall only ",ze[1]," be saved?",sep="");for(i in 2:length(ze)){zer[i]<-paste("Different Zero_fillings. Shall only ",ze[i]," be saved?",sep="")};test<-menu(zer,graphics=T);for(i in 1:length(ze)){if(test==i){bla<-which(nir.ad[,"Zero_filling"]==ze[i]);nir.ad<-nir.ad[bla,]}}}
 
-if(length(summary(as.factor(nir.ad[,"Wavebands"])))!=1){test<-menu(c("Differing number of wavebands  for nir-spectra - continue according to function argument 'wavenumber'.","Differing number of wavebands  for nir-spectra - stop."),graphics=T);if(test==2){stop("You stopped reading spc-files.")}}
+if(length(summary(as.factor(nir.ad[,"Wavebands"])))!=1){test<-menu(c("Differing number of wavebands  for nir-spectra - continue according to function argument 'wn'.","Differing number of wavebands  for nir-spectra - stop."),graphics=T);if(test==2){stop("You stopped reading spc-files.")}}
 
 nir<-nir[match(rownames(nir.ad),test.1)];
 
@@ -279,7 +279,7 @@ nir<-nir[match(rownames(nir.ad),test.1)];
 
 # Further checks:
 
-if(wavenumber=="first.sample"){
+if(wn=="first"){
 if(length(mir)>0){n<-readRaw(tmp[mir][1],offset=4,nbytes=4,human="int",size=4,endian="little")[[5]];
 Ffirst<-readRaw(tmp[mir][1],offset=8,nbytes=8,human="real",size=8,endian="little")[[5]];
 Flast<-readRaw(tmp[mir][1],offset=16,nbytes=8,human="real",size=8,endian="little")[[5]];
@@ -463,11 +463,11 @@ if(length(mir)>0 & length(nir)>0){
 	round(mir.spec,6);
 	output<-list(mir.spectra=mir.spec,mir.additional.information=mir.ad,nir.spectra=nir.spec,nir.additional.information=nir.ad);
 	class(output)<-"read.spc";
-	if(sav=="TRUE"){
-if(save.path!="NULL"){
-		setwd(save.path);}
-		if(save.as=="workspace"){save(output,file=output.name)}
-		if(save.as=="csv.file"){write.table(mir.spec,file=paste("Mir.",output.name,".csv",sep=""),dec=".",sep=",");write.table(nir.spec,file=paste("Nir.",output.name,".csv",sep=""),dec=".",sep=",")}
+	if(sav=="T"){
+if(path!=""){
+		setwd(path);}
+		if(save.as=="workspace"){save(output,file=out)}
+		if(save.as=="csv.file"){write.table(mir.spec,file=paste("Mir.",out,".csv",sep=""),dec=".",sep=",");write.table(nir.spec,file=paste("Nir.",out,".csv",sep=""),dec=".",sep=",")}
 		}
 return(output);
 
@@ -481,11 +481,11 @@ if(length(mir)>0 & length(nir)==0){
 	output<-list(spectra=mir.spec,additional.information=mir.ad);
 class(output)<-"read.spc";
 
-if(sav=="TRUE"){
-if(save.path!="NULL"){
-		setwd(save.path);}
-		if(save.as=="workspace"){save(output,file=output.name)}
-		if(save.as=="csv.file"){write.table(mir.spec,file=paste(output.name,".csv",sep=""),dec=".",sep=",")}
+if(sav=="T"){
+if(path!=""){
+		setwd(path);}
+		if(save.as=="workspace"){save(output,file=out)}
+		if(save.as=="csv.file"){write.table(mir.spec,file=paste(out,".csv",sep=""),dec=".",sep=",")}
 		}
 return(output);
 	}
@@ -497,15 +497,14 @@ if(length(nir)>0 & length(mir)==0){
 	output<-list(spectra=nir.spec,additional.information=nir.ad);
 class(output)<-"read.spc";
 
-if(sav=="TRUE"){
-if(save.path!="NULL"){
-		setwd(save.path);}
-		if(save.as=="workspace"){save(output,file=output.name)}
-		if(save.as=="csv.file"){write.table(nir.spec,file=paste(output.name,".csv",sep=""),dec=".",sep=",")}
+if(sav=="T"){
+if(path!=""){
+		setwd(path);}
+		if(save.as=="workspace"){save(output,file=out)}
+		if(save.as=="csv.file"){write.table(nir.spec,file=paste(out,".csv",sep=""),dec=".",sep=",")}
 		}
 return(output);
 
 	}
 		
 }
-
