@@ -3,7 +3,7 @@
 \alias{read.spc}
 \title{Reads spectral spc-files into R}
 \description{
-\code{read.spc} reads binary spectral spc-files from a folder into R. The spectra can be made compatible (see details in \code{\link{make.comp}}) either to the first sample wavebands or to the standard wavebands of the ICRAF spectral lab. Information from the scanning method is gathered to check on spectral comparability.
+\code{read.spc} reads binary spectral spc-files from a folder into R. The spectra can be made compatible (see details in \code{make.comp}) either to the first sample wavebands or to the standard wavebands of the ICRAF spectral lab. Information from the scanning method is gathered to check on spectral comparability. The default has been set to ICRAF spectral bands.
 }
 \usage{
 read.spc(loa = "", path = "", sav = "F", out = "Sm", save.as = "workspace", wn = "first")
@@ -25,5 +25,13 @@ The function allows to read only spectra in one go, when they have the same mate
 \code{read.spc} returns a list with class \code{"read.spc"} containing the following components: 
   \item{spectra}{a numerical matrix containing the read spectra.}
   \item{additional.information}{a data frame containing some scanning method details.}
+   \item{raw.spectra}{a data frame merging additional.information and spectra; columns 2 to 4 from the additional.information table are excluded to conform to the existing structure of library in existence}
 }
-\author{Thomas Terhoeven-Urselmans}
+\author{Andrew Sila and Thomas Terhoeven-Urselmans}
+
+\examples{
+#mir<-read.spc(loa="D:/AfSIS/spc files",sav="F",wn="ICRAF")
+#raw<-mir$raw.spectra #To extract the object with both additional.information and spectra
+#raw[1:4,1:4] #This gives a snapshot of the first four rows and the first columns of the read data
+}
+

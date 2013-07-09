@@ -1,12 +1,12 @@
 \name{make.comp}
 \Rdversion{1.1}
-\alias{make.comp}
+\alias{\S4method{new}{make.comp}}
 \title{Making spectra compatible}
 \description{
 The function \code{make.comp} interpolates spectral absorbance/reflectance values to a new waveband vector by performing cubic spline interpolation using the \code{spline} function from the \code{stats} package.
 }
 \usage{
-make.comp(spec, new, repl.out = "F", sav = "F", path = "", out= "Csm", save.as = "ws")
+\S4method{new}{make.comp}(spec, new, repl.out = "F", sav = "F", path = "", out= "Csm", save.as = "ws")
 }
 \arguments{
   \item{spec}{a numerical matrix containing the spectra.}

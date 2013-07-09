@@ -1,12 +1,12 @@
 \name{align}
-\alias{align}
+\alias{\S4method{new}{align}}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Combine two tables with columns in unmatching order }
 \description{
 This tools gives a quick way of combining two tables whose columns are arranged in different order. Decide between the two files which should be treated as the master or the reference and the second to be reorganised to the order of the first before combinining. Second can contain fewer columns than the first}
 \usage{
-align(file1, file2)
+\S4method{new}{align}(file1, file2)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

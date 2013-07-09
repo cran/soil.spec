@@ -1,12 +1,12 @@
  \name{copy}
-\alias{copy}
+\alias{\S4method{new}{copy}}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Copying spectral data files}
 \description{
 A quick tool to determine newly acquired files kept in one computer and copied to another.Files created from a specified period of time and stored in source A are identified and copied to source B.}
 \usage{
-copy(source, destination, ddmonyyyy)
+\S4method{new}{copy}(source, destination, ddmonyyyy)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

@@ -42,7 +42,7 @@ function (raw, tr = "derivative", order = 1, gap = 21)
             trans[i, ] <- locpoly(waveb, raw[i, ], drv = order, 
                 bandwidth = gap, gridsize = ncol(raw))[[2]]
         }
-        detach(package:KernSmooth)
+        #detach(package:KernSmooth)
     }
     if (tr == "continuum removed") {
         trans <- matrix(nrow = nrow(raw), ncol = ncol(raw), dimnames = list(rownames(raw), 
@@ -64,7 +64,7 @@ function (raw, tr = "derivative", order = 1, gap = 21)
             trans[i, ] <- cr
         }
         trans <- trans[, 2:(ncol(raw) - 2)]
-        detach(package:KernSmooth)
+        #detach(package:KernSmooth)
     }
     if (tr == "wt") {
         waveb <- as.numeric(colnames(raw))
@@ -97,7 +97,7 @@ function (raw, tr = "derivative", order = 1, gap = 21)
         }
         detach(package:wavelets)
     }
-    x11(width = 10, height = 7)
+    dev.new(width = 10, height = 7)
     par(mfrow = c(2, 1))
     waveb <- as.numeric(colnames(raw))
     plot(raw[1, ] ~ waveb, type = "l", ylim = c(min(raw), max(raw)), 

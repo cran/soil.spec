@@ -1,12 +1,12 @@
 \name{average}
-\alias{average}
+\alias{\S4method{new}{average}}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Average replicate spectral measurements}
 \description{
 Averages replicate spectral measurement but can also be applied to other data sets as long as the data table are organized in the form; first column with ID to show duplicate row and the remaining columns to be averaged over}
 \usage{
-average(spec)
+\S4method{new}{average}(spec)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -22,7 +22,7 @@ A graphical output of the averaged rows is provided and can be saved from the me
 %%  If it is a LIST, use
  \item{rep.spec }{Replicated data before averaging}
  \item{averaged}{Data frame of the average}
- \item{Spectral signatures }{An overlay of all averaged spectraline plot }
+ \item{Spectral signatures }{An overlay of all averaged spectra in one plot }
 
 }
 %%\references{
@@ -32,6 +32,9 @@ A graphical output of the averaged rows is provided and can be saved from the me
 Andrew Sila}
 \note{
 If used on different form of data other than IR, no spectrums are generated and a warning message is given which should be ignored}
+
+\note{
+Ensure that column names have prefix; data tables obtained from \code{read.spc} should first be saved and then read back that way numeric column names will be prefixed automatically. User can control prefix appended to the wavenumbers by naming them explicitly.}
 
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

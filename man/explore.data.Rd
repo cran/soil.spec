@@ -1,12 +1,12 @@
 \name{explore.data}
-\alias{explore.data}
+\alias{\S4method{new}{explore.data}}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Data summary}
 \description{
 Another way of getting data summary statitics and organized in a user friendly way- tabular form}
 \usage{
-explore.data(datafile)
+\S4method{new}{explore.data}(datafile)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
