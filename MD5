@@ -1,4 +1,4 @@
-0042c5a3b94034c55e080c5be72ae5be *DESCRIPTION
+aac00347a7a36c9eabf16c964ebd4f60 *DESCRIPTION
 47ff603c8dcfb8a83c15622f894fd331 *NAMESPACE
 c3e57274bb244aa02ec4a6f6780919f4 *R/align.col.R
 978f1dac1880740ec54fc1e7e9a2adc8 *R/average.R
@@ -7,8 +7,8 @@ c3e57274bb244aa02ec4a6f6780919f4 *R/align.col.R
 c348edda9997e95ed77395aaa38f36d7 *R/ken.sto.R
 3077f2c0e906f603f5bbb092fffe5b13 *R/plot.regr.R
 f36354ca3bc0dbb1e61557c252467c56 *R/plot.trans.R
-e67e041617e87857a958283df428200d *R/pred.regr.R
-2853053ddcc56f3f3df9339353867be7 *R/read.spc.R
+e51b78dd76aeb173001ae30b0fa2e324 *R/pred.regr.R
+b97ff72eafedd1e5a30a3a7321281645 *R/read.spc.R
 8fb5834237409d29d39465cde902b8ce *R/regr.R
 b013e92cfa6d48fc5510e1c142f32bd7 *R/summary.regr.R
 7f34c96915b750236e2afa809d8ab3c2 *R/trans.R

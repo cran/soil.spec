@@ -39,7 +39,7 @@ if(model$spectral.transformation=="raw"){
 if(model$spectral.transformation=="derivative"){
 	new.tr<-matrix(nrow=nrow(new),ncol=ncol(new),dimnames=list(rownames(new),colnames(new)));
 waveb<-as.numeric(colnames(new));
-require(KernSmooth,quietly=T);
+#require(KernSmooth,quietly=T);
 for(i in 1:nrow(new)){
 	new.tr[i,]<-locpoly(waveb,new[i,],drv=model$drv,bandwidth=model$bandwidth,gridsize=ncol(new))[[2]]
 	}
@@ -49,7 +49,7 @@ for(i in 1:nrow(new)){
 if(model$spectral.transformation=="continuum removed"){
 	new.tr<-matrix(nrow=nrow(new),ncol=ncol(new),dimnames=list(rownames(new),colnames(new)));
 waveb<-as.numeric(colnames(new));
-require(KernSmooth,quietly=T);	
+#require(KernSmooth,quietly=T);	
 test<-new;
 for(i in 1:nrow(new)){
 	test.1<-cbind(waveb,test[i,]);
@@ -64,7 +64,7 @@ for(i in 1:nrow(new)){
 	new.tr[i,]<-cr;
 	}
 new.tr<-new.tr[,2:(ncol(new)-2)];
-detach(package:KernSmooth);
+#detach(package:KernSmooth);
 	}
 
 if(model$spectral.transformation=="wavelet transformed"){
@@ -82,13 +82,13 @@ new.comp<-matrix(nrow=nrow(new),ncol=length(waveb.1024),dimnames=list(rownames(n
 for(i in 1:nrow(new)){
 	new.comp[i,]<-round(spline(waveb,new[i,],method="natural",xout=waveb.1024)[[2]],6);
 }
-require(wavelets,quietly=T);
+#require(wavelets,quietly=T);
 new.tr<-matrix(nrow=nrow(new.comp),ncol=2^(10-model$level),dimnames=list(rownames(new.comp),paste("WC_",c(1:2^(10-model$level)),sep="")));
 for(i in 1:nrow(new.tr)){
 	blub<-dwt(new.comp[i,],filter=model$filte);
 	new.tr[i,]<-slot(blub,"W")[[model$level]]
 	}
-detach(package:wavelets);
+#detach(package:wavelets);
 	}
 	
 # Make preparations for predictions:
@@ -185,17 +185,17 @@ if(tr[i]=="log."){pred.l[[i]][rownames(na.omit(new.tr.l[[i]])),paste("pred.",tr[
 pred.l[[i]][,paste("pred.",model$constituents[i],sep="")]<-exp(pred.l[[i]][rownames(new.tr.l[[i]]),paste("pred.",tr[i],model$constituents[i],sep="")])-1}
 	}
 
-detach(package:gbm);
-detach(package:splines);
-detach(package:survival);
-detach(package:lattice);
+#detach(package:gbm);
+#detach(package:splines);
+#detach(package:survival);
+#detach(package:lattice);
 	
 	}
 
 if(model$method=="svm"){
 
-require(class,quietly=T);
-require(e1071,quietly=T);
+#require(class,quietly=T);
+#require(e1071,quietly=T);
 for(i in 1:length(model$constituents)){
 	if(tr[i]==""){pred.l[[i]]<-matrix(nrow=nrow(na.omit(new.tr.l[[i]])),ncol=1,dimnames=list(rownames(na.omit(new.tr.l[[i]])),c(paste("pred.",model$constituents[i],sep=""))));}
 if(tr[i]!=""){pred.l[[i]]<-matrix(nrow=nrow(na.omit(new.tr.l[[i]])),ncol=2,dimnames=list(rownames(na.omit(new.tr.l[[i]])),c(paste("pred.",tr[i],model$constituents[i],sep=""),paste("pred.",model$constituents[i],sep=""))));}
