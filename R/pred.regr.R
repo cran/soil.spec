@@ -1,5 +1,5 @@
 pred.regr <-
-function(new,model,output.name="test",sav="NULL"){
+function(new,model,output.name="test",s="NL"){
 	
 # Check function body:
 
@@ -43,7 +43,7 @@ require(KernSmooth,quietly=T);
 for(i in 1:nrow(new)){
 	new.tr[i,]<-locpoly(waveb,new[i,],drv=model$drv,bandwidth=model$bandwidth,gridsize=ncol(new))[[2]]
 	}
-detach(package:KernSmooth);
+    #detach(package:KernSmooth);
 	}
 
 if(model$spectral.transformation=="continuum removed"){
@@ -145,7 +145,7 @@ if(model$constituents.transformation[i]=="Log transformed"){tr[i]<-"log."};
 	
 if(model$method=="pls"){
 
-require(pls,quietly=T);
+#require(pls,quietly=T);
 
 for(i in 1:length(model$constituents)){
 	if(tr[i]==""){pred.l[[i]]<-matrix(nrow=nrow(new.tr.l[[i]]),ncol=1,dimnames=list(rownames(new.tr.l[[i]]),c(paste("pred.",model$constituents[i],sep=""))));}
@@ -160,15 +160,15 @@ if(tr[i]=="log."){pred.l[[i]][rownames(na.omit(new.tr.l[[i]])),paste("pred.",tr[
 pred.l[[i]][,paste("pred.",model$constituents[i],sep="")]<-exp(pred.l[[i]][rownames(new.tr.l[[i]]),paste("pred.",tr[i],model$constituents[i],sep="")])-1}
 	}
 
-detach(package:pls);	
+#detach(package:pls);	
 	}
 	
 if(model$method=="brt"){
 	
-require(splines,quietly=T);
-require(survival,quietly=T);
-require(lattice,quietly=T);
-require(gbm,quietly=T);
+#require(splines,quietly=T);
+#require(survival,quietly=T);
+#require(lattice,quietly=T);
+#require(gbm,quietly=T);
 
 
 
@@ -209,8 +209,8 @@ if(tr[i]=="log."){pred.l[[i]][rownames(na.omit(new.tr.l[[i]])),paste("pred.",tr[
 pred.l[[i]][,paste("pred.",model$constituents[i],sep="")]<-exp(pred.l[[i]][rownames(new.tr.l[[i]]),paste("pred.",tr[i],model$constituents[i],sep="")])-1}
 }
 
-detach(package:class);
-detach(package:e1071);
+#detach(package:class);
+#detach(package:e1071);
 	
 	}
 	
@@ -246,8 +246,8 @@ pred<-round(pred,2);
 
 # Write output to
 
-if(sav!="NULL"){
-		setwd(sav);
+if(s!="NULL"){
+		setwd(s);
 		}
 test<-cbind(rownames(pred),pred);
 colnames(test)[1]<-"Sample_ID";

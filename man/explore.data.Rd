@@ -1,12 +1,12 @@
 \name{explore.data}
-\alias{\S4method{new}{explore.data}}
+\alias{explore.data}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Data summary}
 \description{
 Another way of getting data summary statitics and organized in a user friendly way- tabular form}
 \usage{
-\S4method{new}{explore.data}(datafile)
+explore.data(datafile)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -40,8 +40,10 @@ If all columns are non-numeric the complete cases will be returned only}
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 %%}
 \examples{
-	#soil<-read.csv(file.choose())
-	#explore.data(soil)
+
+\dontrun{#Start by reading a file with data to be explored}
+	\dontrun{soil<-read.csv(file.choose())}
+	\dontrun{explore.data(soil)}
 }
 
 % Add one or more standard keywords, see file 'KEYWORDS' in the

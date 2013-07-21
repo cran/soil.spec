@@ -70,7 +70,7 @@ inp.start.b<-inp.start.b[-(which(match(inp.start.b,bla)!="NA"))];
 }
 cal.n<-match(cal,rownames(inp));
 
-quartz(width=13,height=8);
+dev.new(width=13,height=8);
 if(pc<=2){par(mfrow=c(2,2),mar=c(1,1,1,1))};
 for(i in 3:5){
 if(pc==i){par(mfrow=c(i,i),mar=c(1,1,1,1))};
@@ -137,18 +137,18 @@ cal<-rownames(inp)[cal.n];
 
 # Plot the output:	
 	
-#quartz(width=13,height=8);
-#if(pc<=2){par(mfrow=c(2,2),mar=c(1,1,1,1))};
-#for(i in 3:5){
-#if(pc==i){par(mfrow=c(i,i),mar=c(1,1,1,1))};
-#	}
-#if(pc>5){par(mfrow=c(5,5),mar=c(1,1,1,1))};
-#for(i in 1:if(pc<=5){pc}else{5}){
-#	for(j in 1:if(pc<=5){pc}else{5}){
-#		plot(prco[,i]~prco[,j],cex=0.3);
-#		points(prco[val.n,i]~prco[val.n,j],col="green",cex=0.3);
-#		}	
-#	}
+dev.new(width=13,height=8);
+if(pc<=2){par(mfrow=c(2,2),mar=c(1,1,1,1))};
+for(i in 3:5){
+if(pc==i){par(mfrow=c(i,i),mar=c(1,1,1,1))};
+	}
+if(pc>5){par(mfrow=c(5,5),mar=c(1,1,1,1))};
+for(i in 1:if(pc<=5){pc}else{5}){
+for(j in 1:if(pc<=5){pc}else{5}){
+plot(prco[,i]~prco[,j],cex=0.3);
+points(prco[val.n,i]~prco[val.n,j],col="green",cex=0.3);
+}	
+}
 	
 output<-list("Calibration and validation set"=va,"Number important PC"=pc,"PC space important PC"=prco,"Chosen sample names"="","Chosen row number"="","Chosen calibration sample names"=cal,"Chosen calibration row number"=cal.n,"Chosen validation sample names"=val,"Chosen validation row number"=val.n);
 class(output)<-"ken.sto";
@@ -164,7 +164,7 @@ return(output);
 plot.ken.sto <-
 function(x,...){
 	if(x$"Calibration and validation set"=="FALSE"){
-		quartz(width=13,height=8);
+		dev.new(width=13,height=8);
 if(x$"Number important PC"<=2){par(mfrow=c(2,2),mar=c(1,1,1,1))};
 for(i in 3:5){
 if(x$"Number important PC"==i){par(mfrow=c(i,i),mar=c(1,1,1,1))};
@@ -179,7 +179,7 @@ for(i in 1:if(x$"Number important PC"<=5){x$"Number important PC"}else{5}){
 		}
 	
 	if(x$"Calibration and validation set"=="TRUE"){
-		quartz(width=13,height=8);
+		dev.new(width=13,height=8);
 if(x$"Number important PC"<=2){par(mfrow=c(2,2),mar=c(1,1,1,1))};
 for(i in 3:5){
 if(x$"Number important PC"==i){par(mfrow=c(i,i),mar=c(1,1,1,1))};

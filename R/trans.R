@@ -37,7 +37,7 @@ function (raw, tr = "derivative", order = 1, gap = 21)
         trans <- matrix(nrow = nrow(raw), ncol = ncol(raw), dimnames = list(rownames(raw), 
             colnames(raw)))
         waveb <- as.numeric(colnames(raw))
-        require(KernSmooth, quietly = T)
+        #require(KernSmooth, quietly = T)
         for (i in 1:nrow(raw)) {
             trans[i, ] <- locpoly(waveb, raw[i, ], drv = order, 
                 bandwidth = gap, gridsize = ncol(raw))[[2]]
@@ -48,7 +48,7 @@ function (raw, tr = "derivative", order = 1, gap = 21)
         trans <- matrix(nrow = nrow(raw), ncol = ncol(raw), dimnames = list(rownames(raw), 
             colnames(raw)))
         waveb <- as.numeric(colnames(raw))
-        require(KernSmooth, quietly = T)
+        #require(KernSmooth, quietly = T)
         test <- raw
         for (i in 1:nrow(raw)) {
             test.1 <- cbind(waveb, test[i, ])
@@ -84,7 +84,7 @@ function (raw, tr = "derivative", order = 1, gap = 21)
             raw.comp[i, ] <- round(spline(waveb, raw[i, ], method = "natural", 
                 xout = waveb.1024)[[2]], 6)
         }
-        library(wavelets)
+        #library(wavelets)
         lev <- 7
         slo <- 3
         filte = "haar"
@@ -95,7 +95,7 @@ function (raw, tr = "derivative", order = 1, gap = 21)
             blub <- dwt(raw.comp[i, ], filter = filte)
             trans[i, ] <- slot(blub, "W")[[slo]]
         }
-        detach(package:wavelets)
+        #detach(package:wavelets)
     }
     dev.new(width = 10, height = 7)
     par(mfrow = c(2, 1))

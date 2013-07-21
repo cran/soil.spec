@@ -1,7 +1,7 @@
 plot.regr <-
 function(x,...){
 	
-quartz(width=5,height=2.5*length(x$constituents));
+dev.new(width=5,height=2.5*length(x$constituents));
 par(mfrow=c(length(x$constituents),2));
 for(i in 1:length(x$constituents)){
 mi<-min(na.omit(c(x$cal.mea.pre[,x$constituents[i]],x$cal.mea.pre[,paste("pred.",x$constituents[i],sep="")],x$val.mea.pre[,x$constituents[i]],x$val.mea.pre[,paste("pred.",x$constituents[i],sep="")])));

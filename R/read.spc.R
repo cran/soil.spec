@@ -1,7 +1,7 @@
- rm(list=ls())
 read.spc<-function (loa = "", path = "", sav = "F", out = "Sm", save.as = "workspace", 
     wn = "first") 
-    {
+    {#Declare global variable
+    	blockString<-NULL
 tmp <- c()
     if (loa != "") {
         setwd(loa)
@@ -50,7 +50,7 @@ tmp <- c()
     }
     rang <- c()
     for (i in 1:length(tmp)) {
-        require(hexView, quietly = T)
+       # require(hexView, quietly = T)
         bla <- readRaw(tmp[i], offset = 4, nbytes = 4, human = "int", 
             size = 4, endian = "little")[[5]]
         test <- readRaw(tmp[i], offset = (bla * 4 + 544 + 64), nbytes = 428, human = "char", endian = "little")

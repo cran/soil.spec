@@ -2,17 +2,19 @@ Package: soil.spec
 Type: Package
 Title: Soil spectral file conversion, data exploration and regression
         functions
-Version: 2.1.1
-Date: 2013-07-09
+Version: 2.1.2
+Date: 2013-07-21
 Author: Andrew Sila and Thomas Terhoeven-Urselmans
 Maintainer: Andrew Sila <asila@cgiar.org>
 URL: http://worldagroforestry.org/research/land-health,
         http://www.africasoils.net/
-Description: A collection of tools customized for preprocessing and analyzing soil and plant infrared spectroscopy data.
-Depends: R (>= 3.0), KernSmooth, car, class, e1071, hexView, gbm,
-        lattice, pls, splines, survival, wavelets
+Description: A collection of tools customized for preprocessing and analyzing soil and plant infrared spectroscopy data with useful tools included for working with other ancillary data.
+Depends: R (>= 3.0),KernSmooth,wavelets
+Imports: car, class, hexView, gbm, lattice, pls, splines, survival,
+        wavelets, pls
+Suggests: e1071,class
 License: GPL (>= 2)
-Packaged: 2013-07-09 16:00:59 UTC; andrewsila
+Packaged: 2013-07-21 20:31:34 UTC; andrewsila
 NeedsCompilation: no
 Repository: CRAN
-Date/Publication: 2013-07-09 21:10:33
+Date/Publication: 2013-07-21 23:45:25

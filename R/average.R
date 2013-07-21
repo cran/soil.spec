@@ -1,49 +1,51 @@
-average <-
-function(spec){
-	spec<-raw
+average<-function(spec, type=""){
 ssn<-as.character(spec[,1])
 uss<-c()
 for (i in 1:length(ssn)){
 zl<-nchar(ssn[i])
-z<-zl-0
+z<-ifelse(zl>9,9,zl)
 uss[i]<-substr(ssn[i],1,z)}
 
 spec[,1]<-uss
 ussn<-unique(uss)
 frr<-c()
-av<-c()
+avg<-c()
 avd<-c()
-#for (j in 1:length(ssn)){
 	for (k in 1:length(ussn)){
-		#for (k in 1:243){
 	frr<-subset(spec[,2:ncol(spec)],spec[,1]==ussn[k])
- 	av<-t(as.matrix(apply(frr,2,mean)))
-	avd<-rbind(avd,av)}
+ 	avg<-t(as.matrix(apply(frr,2,mean)))
+	avd<-rbind(avd,avg)}
 	
-	rownames(avd)<-ussn
+rownames(avd)<-ussn
 
 #Check number of spectra averaged
 dim(avd)
-#avd[1:3,1:4]
 k<-ncol(avd)
 
-spec<-as.matrix(avd[,1:k])
-wave<-as.numeric(substr(colnames(spec),2,11))
-#Check which columns are blank
-spn.1<-as.numeric(spec[1,])
+if(type=="spectra"){
+spec.avd<-as.matrix(avd[,1:k])
+wave<-as.numeric(substr(colnames(spec.avd),2,15))
+	
+	#Check which columns are blank
+spn.1<-as.numeric(spec.avd[1,])
 s<-which(spn.1!="NA")
 
-plot(wave[s],spec[1,s],type="l",col=1,xlim=c(max(wave),min(wave)),pch="n",ylim=c(min(na.omit(spec[,s])),max(na.omit(spec[,s]))),ylab="Infrared measurements",xlab=expression("Wavenumbers cm"^-1))
-for (p in 1:nrow(spec))
+plot(wave[s],spec.avd[1,s],type="l",col=1,xlim=c(max(wave),min(wave)),pch="n",ylim=c(min(na.omit(spec.avd[,s])),max(na.omit(spec.avd[,s]))),ylab="Infrared measurements",xlab=expression("Wavenumbers cm"^-1),main="Averaged spectra")
+for (p in 1:nrow(spec.avd))
 {
-lines(wave[s],spec[p,s],col=p)}
+lines(wave[s],spec.avd[p,s],col=p)}
 
-
+test <- menu(c("Spectra looks ok - please continue", "Spectrum(s) not ok - please stop"), 
+                graphics = T)
+            graphics.off()
+            if (test == 2) 
+                stop("Spectra averaged does not look ok; investigate!")
+}
 #################################################
 avds<-cbind(rownames(avd),avd)
 colnames(avds)<-c("SSN",colnames(avd))
+avds<-as.data.frame(avds)
 
-output<-list(rep.spec=raw,averaged=as.data.frame(avds))
-class(output)<-"average"
-return(output)
-}
+
+output<-list(rep.spec=spec,averaged=avds)
+return(output)}

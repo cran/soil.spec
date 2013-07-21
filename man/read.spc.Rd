@@ -30,8 +30,8 @@ The function allows to read only spectra in one go, when they have the same mate
 \author{Andrew Sila and Thomas Terhoeven-Urselmans}
 
 \examples{
-#mir<-read.spc(loa="D:/AfSIS/spc files",sav="F",wn="ICRAF")
-#raw<-mir$raw.spectra #To extract the object with both additional.information and spectra
-#raw[1:4,1:4] #This gives a snapshot of the first four rows and the first columns of the read data
+\dontrun{mir<-read.spc(loa="D:/AfSIS/spc files",sav="F",wn="ICRAF")}
+\dontrun{raw<-mir$raw.spectra #To extract the object with both additional.information and spectra}
+\dontrun{raw[1:4,1:4] #This gives a snapshot of the first four rows and the first columns}
 }
 

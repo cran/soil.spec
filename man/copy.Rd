@@ -1,12 +1,12 @@
  \name{copy}
-\alias{\S4method{new}{copy}}
+\alias{copy}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Copying spectral data files}
 \description{
 A quick tool to determine newly acquired files kept in one computer and copied to another.Files created from a specified period of time and stored in source A are identified and copied to source B.}
 \usage{
-\S4method{new}{copy}(source, destination, ddmonyyyy)
+copy(source, destination, ddmonyyyy)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -41,8 +41,8 @@ To test the speed of writing , try with recent files say those created in the la
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 %}
 \examples{
-#copy("d:/Measurements/soil","g:/New scans",12mar2013)}
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
+\dontrun{new.files<-copy("d:/Measurements/soil","g:/New scans",12mar2013)}
+}
+
 \keyword{ source }
 \keyword{ destination}% __ONLY ONE__ keyword per line
