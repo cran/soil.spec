@@ -4,7 +4,7 @@
 \alias{plot.ken.sto}
 \title{Sample selection based on the Kennard-Stone algorithm}
 \description{
-The function chooses based on Euclidean distance measure most representative samples. One can (i) select a number or a percentage of a sample set or (ii) divide a sample set into calibration and representative validation set.
+The function chooses points based on Euclidean distance measure most representative samples. One can (i) select a number or a percentage of a sample set or (ii) divide a sample set into calibration and representative validation set.
 }
 \usage{
 ken.sto(inp, per = "T", per.n = 0.3, num, va = "F", sav = "T", path = "", out = "Sel")}

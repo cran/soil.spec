@@ -1,19 +1,20 @@
 Package: soil.spec
 Type: Package
-Title: Soil spectral file conversion, data exploration and regression
-        functions
-Version: 2.1.3
-Date: 2013-07-21
-Author: Andrew Sila and Thomas Terhoeven-Urselmans
-Maintainer: Andrew Sila <asila@cgiar.org>
+Title: Soil Spectroscopy Tools and Reference Models
+Version: 2.1.4
+Date: 2014-12-17
+Author: Andrew Sila, Tomislav Hengl and Thomas Terhoeven-Urselmans
+Maintainer: Andrew Sila <a.sila@cgiar.org>
 URL: http://worldagroforestry.org/research/land-health,
         http://www.africasoils.net/
-Description: A collection of tools customized for preprocessing and analyzing soil and plant infrared spectroscopy data with useful tools included for working with other ancillary data.
-Depends: R (>= 3.0),KernSmooth,wavelets, hexView
-Imports: pls
-Suggests: e1071,class
+Description: Methods and classes for processing and analyzing soil and plant infrared (MIR, alpha-MIR and VISNIR) spectroscopy readings based on the Africa Soil Information Services (AfSIS) project data.
+Depends: R (>= 3.0)
+Imports: methods, stats, pls, KernSmooth, wavelets, hexView, sp, GSIF
+Suggests: e1071, class, chemometrics, plyr, plotKML, mgcv, nlme,
+        spatstat, scales, date, lava, rgdal
 License: GPL (>= 2)
-Packaged: 2013-08-27 14:55:05 UTC; andrewsila
+LazyLoad: yes
+Packaged: 2014-12-17 09:50:22 UTC; hengl001
 NeedsCompilation: no
 Repository: CRAN
-Date/Publication: 2013-08-27 17:21:09
+Date/Publication: 2014-12-17 13:07:11

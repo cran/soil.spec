@@ -1,6 +1,8 @@
-trans <-
-function (raw, tr = "derivative", order = 1, gap = 21) 
-{
+#' Derives first derivative from ab matrix
+#'
+#' @author Andrew Sila \email{asila@cgiar.org}
+
+trans <- function (raw, tr = "derivative", order = 1, gap = 21, plot.spectrogram=FALSE){
     if (class(as.numeric(colnames(raw))) != "numeric") {
         stop("Invalid argument: the colnames of 'raw', which should be the waveband positions, are not coercible to class 'numeric'.")
     }
@@ -34,21 +36,18 @@ function (raw, tr = "derivative", order = 1, gap = 21)
         }
     }
     if (tr == "derivative") {
-        trans <- matrix(nrow = nrow(raw), ncol = ncol(raw), dimnames = list(rownames(raw), 
+        transdf <- matrix(nrow = nrow(raw), ncol = ncol(raw), dimnames = list(rownames(raw), 
             colnames(raw)))
         waveb <- as.numeric(colnames(raw))
-        #require(KernSmooth, quietly = T)
         for (i in 1:nrow(raw)) {
-            trans[i, ] <- locpoly(waveb, raw[i, ], drv = order, 
+            transdf[i, ] <- locpoly(waveb, raw[i, ], drv = order, 
                 bandwidth = gap, gridsize = ncol(raw))[[2]]
         }
-        #detach(package:KernSmooth)
     }
     if (tr == "continuum removed") {
-        trans <- matrix(nrow = nrow(raw), ncol = ncol(raw), dimnames = list(rownames(raw), 
+        transdf <- matrix(nrow = nrow(raw), ncol = ncol(raw), dimnames = list(rownames(raw), 
             colnames(raw)))
         waveb <- as.numeric(colnames(raw))
-        #require(KernSmooth, quietly = T)
         test <- raw
         for (i in 1:nrow(raw)) {
             test.1 <- cbind(waveb, test[i, ])
@@ -61,10 +60,9 @@ function (raw, tr = "derivative", order = 1, gap = 21)
             appr.ch <- approx(test.1[ch, ], xout = test.1[, 1], 
                 method = "linear", ties = "mean")
             cr <- test.1[[2]] - appr.ch[[2]]
-            trans[i, ] <- cr
+            transdf[i, ] <- cr
         }
-        trans <- trans[, 2:(ncol(raw) - 2)]
-        #detach(package:KernSmooth)
+        transdf <- transdf[, 2:(ncol(raw) - 2)]
     }
     if (tr == "wt") {
         waveb <- as.numeric(colnames(raw))
@@ -84,30 +82,30 @@ function (raw, tr = "derivative", order = 1, gap = 21)
             raw.comp[i, ] <- round(spline(waveb, raw[i, ], method = "natural", 
                 xout = waveb.1024)[[2]], 6)
         }
-        #library(wavelets)
         lev <- 7
         slo <- 3
         filte = "haar"
-        trans <- matrix(nrow = nrow(raw.comp), ncol = 2^lev, 
+        transdf <- matrix(nrow = nrow(raw.comp), ncol = 2^lev, 
             dimnames = list(rownames(raw.comp), paste("WC_", 
                 c(1:2^lev), sep = "")))
-        for (i in 1:nrow(trans)) {
+        for (i in 1:nrow(transdf)) {
             blub <- dwt(raw.comp[i, ], filter = filte)
-            trans[i, ] <- slot(blub, "W")[[slo]]
+            transdf[i, ] <- slot(blub, "W")[[slo]]
         }
-        #detach(package:wavelets)
     }
+  waveb <- as.numeric(colnames(raw))
+  if(plot.spectrogram==TRUE){
     dev.new(width = 10, height = 7)
     par(mfrow = c(2, 1))
-    waveb <- as.numeric(colnames(raw))
     plot(raw[1, ] ~ waveb, type = "l", ylim = c(min(raw), max(raw)), 
         xlab = "Wavebands", ylab = "Absorption or Reflection", 
         main = "Raw spectra")
     for (i in 2:nrow(raw)) {
         lines(raw[i, ] ~ waveb)
     }
+  }
     if (tr != "wt") {
-        waveb <- as.numeric(colnames(trans))
+        waveb <- as.numeric(colnames(transdf))
         xl = "Wavebands"
         yl = "Absorption or Reflection"
     }
@@ -125,12 +123,14 @@ function (raw, tr = "derivative", order = 1, gap = 21)
     if (tr == "wt") {
         te <- "Wavelet transformed spectra"
     }
-    plot(trans[1, ] ~ waveb, type = "l", ylim = c(min(trans), 
-        max(trans)), xlab = xl, ylab = yl, main = te)
+  if(plot.spectrogram==TRUE){
+    plot(transdf[1, ] ~ waveb, type = "l", ylim = c(min(transdf), 
+        max(transdf)), xlab = xl, ylab = yl, main = te)
     for (i in 2:nrow(raw)) {
-        lines(trans[i, ] ~ waveb)
+        lines(transdf[i, ] ~ waveb)
     }
-    output <- list(raw = raw, trans = trans, transformation = tr)
+  }
+    output <- list(raw = raw, trans = transdf, transformation = tr)
     class(output) <- "trans"
     return(output)
 }

@@ -1,3 +1,8 @@
+#' Function for reading SPC files
+#'
+#' @author Andrew Sila \email{asila@cgiar.org}
+#' Note:
+
 read.spc<-function (loa = "", path = "", sav = "F", out = "Sm", save.as = "workspace", 
     wn = "first") 
     {#Declare global variable
